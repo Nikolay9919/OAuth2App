@@ -28,17 +28,17 @@ class Constants {
         const val NEW_LINE = "\n"
         val clientSecret = "android_secret"
         val clientId = "android"
-        val contentType = "application/x-www-form-urlencoded"
+        const val contentType = "application/x-www-form-urlencoded"
         val TOKEN_URL = "https://myzxc.fibank.bg:443/oauth2-server/oauth/token"
-        val OAUTH_APP_SCOPE = "read"
-        val SCOPE = "scope"
+        const val OAUTH_APP_SCOPE = "read"
+        const val SCOPE = "scope"
         val EBANK_SYSTEM_ID = "MY-FIBANK.BG"
-        val GRANT_TYPE_PASSWORD = "password"
+        const val GRANT_TYPE_PASSWORD = "password"
 
-        val HEADER_ACCEPT = "Accept"
-        val HEADER_CONTENT_TYPE = "Content-Type"
-        val AUTHORIZATION = "Authorization"
-        val GRANT_TYPE = "grant_type"
+        const val HEADER_ACCEPT = "Accept"
+        const val AUTHORIZATION = "Authorization"
+        const val GRANT_TYPE = "grant_type"
+
 
     }
 }
