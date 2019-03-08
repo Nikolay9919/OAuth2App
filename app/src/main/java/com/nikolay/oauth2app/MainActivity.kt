@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 .url(TOKEN_URL)
                 .addHeader(
                     HEADER_AUTHORIZATION,
-                    String.format("Basic ${Basic.encode("$username:$password".toByteArray())}")
+                    String.format("Basic ${Basic.encode(auth.toByteArray())}")
                 )
                 .addHeader("Scope", HEADER_OAUTH_APP_SCOPE)
                 .addHeader("grant_type", GRANT_TYPE_PASSWORD)
