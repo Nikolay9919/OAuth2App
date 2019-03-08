@@ -3,7 +3,6 @@ package com.nikolay.oauth2app
 import android.os.Bundle
 import android.os.StrictMode
 import android.support.v7.app.AppCompatActivity
-import android.util.Base64
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.MediaType
@@ -20,20 +19,18 @@ class MainActivity : AppCompatActivity() {
 
         val strictMode = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(strictMode)
-
-
         val clientSecret = "android_secret"
         val clientId = "android"
         val contentType = "application/x-www-form-urlencoded"
         val TOKEN_URL = "https://myzxc.fibank.bg:443/oauth2-server/oauth/token"
-        val OAUTH_APP_SCOPE = "read"
-        val EBANK_SYSTEM_ID = "MY-FIBANK.BG"
+        val HEADER_OAUTH_APP_SCOPE = "read"
+        val HEADER_EBANK_SYSTEM_ID = "MY-FIBANK.BG"
         val GRANT_TYPE_PASSWORD = "password"
         val username = "pib123"
         val password = "pib123"
-        val ACCEPT = "Accept"
-        val CONTENT_TYPE = "Content-Type"
-        val AUTHORIZATION = "Authorization"
+        val HEADER_ACCEPT = "Accept"
+        val HEADER_CONTENT_TYPE = "Content-Type"
+        val HEADER_AUTHORIZATION = "Authorization"
 
 
         btn_run.setOnClickListener {
@@ -51,13 +48,13 @@ class MainActivity : AppCompatActivity() {
             val request = Request.Builder()
                 .url(TOKEN_URL)
                 .addHeader(
-                    AUTHORIZATION,
-                    String.format("Basic %s", String(Base64.encode(auth.toByteArray(), Base64.NO_WRAP)))
+                    HEADER_AUTHORIZATION,
+                    String.format("Basic ${Basic.encode("$username:$password".toByteArray())}")
                 )
-                .addHeader("Scope", OAUTH_APP_SCOPE)
+                .addHeader("Scope", HEADER_OAUTH_APP_SCOPE)
                 .addHeader("grant_type", GRANT_TYPE_PASSWORD)
-                .addHeader(ACCEPT, "application/json, application/x-www-form-urlencoded")
-                .addHeader(CONTENT_TYPE, contentType)
+                .addHeader(HEADER_ACCEPT, "application/json, application/x-www-form-urlencoded")
+                .addHeader(HEADER_CONTENT_TYPE, contentType)
                 .addHeader("username", username)
                 .addHeader("password", password)
                 .build()
